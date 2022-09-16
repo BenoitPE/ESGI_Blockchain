@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { mintToken } from '../Web3Client';
 
 export function CreateBookForm() {
     const [bookName, setBookName] = useState("");
@@ -8,8 +9,19 @@ export function CreateBookForm() {
     const [bookTokenUri, setBookTokenUri] = useState("");
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-    }
+      event.preventDefault();
+      mintToken(bookName, bookAuthor, bookState, bookDescription, bookTokenUri).then(tx => {
+         console.log(tx.transactionHash);
+         setBookName("");
+         setBookAuthor("");
+         setBookState("0");
+         setBookDescription("");
+         setBookTokenUri("");
+      }).catch(err => {
+         console.log(err);
+      });
+
+   }
 
     return (
         <div className="card mt-5 mb-5 ">
