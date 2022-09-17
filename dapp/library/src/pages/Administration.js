@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Navbar } from '../components/Navbar';
+import { CreateBookForm } from "../components/CreateBookForm";
 
-const CollectionPage = () => {
+const AdministrationPage = () => {
+
     return (
         <main>
             <Navbar />
@@ -10,16 +11,15 @@ const CollectionPage = () => {
             <div className="container text-center">
                 <div className="row mt-4 mb-4">
                     <div className="col">
-                        <h2>My collection</h2>
+                        <h2>Administration</h2>
                     </div>
                 </div>
 
-                <div>
-                    <Link to="/Marketplace" >Go to Library</Link>
-                </div>
+                <CreateBookForm />
+
             </div>
         </main>
     );
-};
+}
 
-export default CollectionPage;
+export default AdministrationPage;

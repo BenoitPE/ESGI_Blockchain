@@ -2,16 +2,18 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LibraryPage from "./pages/library";
-import CollectionPage from "./pages/collection";
+import MarketplacePage from "./pages/Marketplace";
+import CollectionPage from "./pages/Collection";
+import AdministrationPage from "./pages/Administration";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LibraryPage />} />
-        <Route path="/library" element={<LibraryPage />} />
-        <Route path="/collection" element={<CollectionPage />} />
+        <Route path="/" element={<MarketplacePage />} />
+        <Route path="/Marketplace" element={<MarketplacePage />} />
+        <Route path="/Collection" element={<CollectionPage />} />
+        <Route path="/Administration" element={<AdministrationPage />} />
       </Routes>
     </Router>
   );
