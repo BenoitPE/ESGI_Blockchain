@@ -1783,7 +1783,7 @@ contract BookFactory is Ownable, ERC721URIStorage {
 
     constructor() ERC721("My Library", "Book") {}
 
-    function mint(
+    function _mint(
         address recipient,
         uint256 id,
         string memory tokenURI
@@ -1792,7 +1792,7 @@ contract BookFactory is Ownable, ERC721URIStorage {
         _setTokenURI(id, tokenURI);
     }
 
-    function _createBook(
+    function createBook(
         string calldata _name,
         string calldata _description,
         string calldata _author,
@@ -1807,7 +1807,7 @@ contract BookFactory is Ownable, ERC721URIStorage {
         emit NewBook(id, _description, _name, _author, _tokenURI, _state);
     }
 
-    function _getBooksByState(State _state)
+    function getBooksByState(State _state)
         external
         view
         returns (Book[] memory)
