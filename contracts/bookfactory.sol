@@ -1822,3 +1822,20 @@ contract BookFactory is Ownable, ERC721URIStorage {
         return selectedBooks;
     }
 }
+
+contract PrivateSales is Ownable {
+    mapping(address => bool) public whiteListedMembers;
+
+    modifier isInWhiteList(address _member) {
+        require(whiteListedMembers[_member]);
+        _;
+    }
+
+    function AddMemberToWhiteList(address _member) public onlyOwner {
+        whiteListedMembers[_member] = true;
+    }
+
+    function RemoveMemberToWhiteList(address _member) public onlyOwner {
+        whiteListedMembers[_member] = false;
+    }
+}
