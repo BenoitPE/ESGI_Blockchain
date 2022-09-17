@@ -33,11 +33,11 @@ const LibraryPage = () => {
                 <CreateBookForm />
 
                 <div className="row mb-5">
-                    <Card title={'test 1'} author={'Alfred'} state={'Neuf'} url={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"} />
-                    <Card title={'test 2'} author={'Alfred'} state={'Neuf'} url={"https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive-960x540.jpg"} />
-                    <Card title={'test 3'} author={'Alfred'} state={'Neuf'} url={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"} />
-                    <Card title={'test 4'} author={'Alfred'} state={'Neuf'} url={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"} />
-                    <Card title={'test 5'} author={'Alfred'} state={'Neuf'} url={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"} />
+                    <Card title={'test 1'} author={'Alfred'} state={'Neuf'} url={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"} purchasable="true" />
+                    <Card title={'test 2'} author={'Alfred'} state={'Neuf'} url={"https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive-960x540.jpg"} purchasable="true" />
+                    <Card title={'test 3'} author={'Alfred'} state={'Neuf'} url={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"} purchasable="true" />
+                    <Card title={'test 4'} author={'Alfred'} state={'Neuf'} url={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"} purchasable="true" />
+                    <Card title={'test 5'} author={'Alfred'} state={'Neuf'} url={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"} purchasable="true" />
                 </div>
 
             </div>
