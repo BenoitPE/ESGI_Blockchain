@@ -31,11 +31,11 @@ const MarketplacePage = () => {
                 </div>
 
                 <div className="row mb-5">
-                    <Card title={'test 1'} author={'Alfred'} state={'Neuf'} url={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"} purchasable="true" />
-                    <Card title={'test 2'} author={'Alfred'} state={'Neuf'} url={"https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive-960x540.jpg"} purchasable="true" />
-                    <Card title={'test 3'} author={'Alfred'} state={'Neuf'} url={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"} purchasable="true" />
-                    <Card title={'test 4'} author={'Alfred'} state={'Neuf'} url={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"} purchasable="true" />
-                    <Card title={'test 5'} author={'Alfred'} state={'Neuf'} url={"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"} purchasable="true" />
+                    <Card title={'NFT 1'} author={'Alfred'} state={'Neuf'} purchasable="true" url={"https://wallpaperaccess.com/full/138728.jpg"} />
+                    <Card title={'NFT 2'} author={'Alfred'} state={'Neuf'} purchasable="true" url={"https://images.toucharger.com/img/graphiques/fonds-d-ecran/amour-amitie/coeur/coeur-full-hd.74678.jpg"} />
+                    <Card title={'NFT 3'} author={'Alfred'} state={'Neuf'} purchasable="true" url={"https://wallpaper.dog/large/10772206.jpg"} />
+                    <Card title={'NFT 4'} author={'Alfred'} state={'Neuf'} purchasable="true" url={"https://www.pixelstalk.net/wp-content/uploads/2016/07/1080p-Full-HD-Images.jpg"} />
+                    <Card title={'NFT 5'} author={'Alfred'} state={'Neuf'} purchasable="true" url={"https://wallpaperaccess.com/full/138730.jpg"} />
                 </div>
 
             </div>

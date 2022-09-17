@@ -7,7 +7,7 @@ export function Card(props) {
                 <div className="card-body">
                     <h6 className="card-text">{title}</h6>
                     <p className="card-text">de {author}</p>
-                    <button className="btn btn-primary" hidden={!purchasable}>Acheter</button>
+                    <button className="btn btn-primary" hidden={!purchasable}>Buy</button>
                 </div>
             </div>
         </div>
