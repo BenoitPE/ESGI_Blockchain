@@ -1771,6 +1771,14 @@ contract PrivateSales is Ownable {
         _;
     }
 
+    event NewMemberInWaitingList(address member);
+    event NewMemberInWhiteList(address member);
+    event MemberRemovedFromWaitingList(address member);
+    event MemberRemovedFromWhiteList(address member);
+
+    /// @notice Get the status of a member
+    /// @param _member A member address
+    /// @return string The member status
     function getMemberStatus(address _member)
         external
         view
@@ -1781,25 +1789,37 @@ contract PrivateSales is Ownable {
         else return "Unknow member";
     }
 
+    /// @notice Get members in getWaitingList
+    /// @return waitingList a list of members' address
     function getWaitingList() external view returns (address[] memory) {
         return waitingList;
     }
 
+    /// @notice Get members in whitelist
+    /// @return whiteList a list of members' address
     function getWhiteList() external view returns (address[] memory) {
         return whiteList;
     }
 
+    /// @notice Add a member to the waiting list
+    /// @param _member A member address
     function addMemberToWaitingList(address _member) public {
         waitingMembers[_member] = true;
         waitingList.push(_member);
         waitingListIndex[_member] = waitingList.length - 1;
+        emit NewMemberInWaitingList(_member);
     }
 
+    /// @notice Remove a member from the waiting list
+    /// @param _member A member address
     function removeMemberFromWaitingList(address _member) public onlyOwner {
         waitingMembers[_member] = false;
         delete waitingList[waitingListIndex[_member]];
+        emit MemberRemovedFromWaitingList(_member);
     }
 
+    /// @notice Add a member to the whitelist
+    /// @param _member A member address
     function addMemberToWhiteList(address _member)
         public
         onlyOwner
@@ -1810,11 +1830,15 @@ contract PrivateSales is Ownable {
         whiteListedMembers[_member] = true;
         whiteList.push(_member);
         whiteListIndex[_member] = whiteList.length - 1;
+        emit NewMemberInWhiteList(_member);
     }
 
+    /// @notice Remove a member from the whitelist
+    /// @param _member A member address
     function removeMemberFromWhiteList(address _member) public onlyOwner {
         whiteListedMembers[_member] = false;
         delete whiteList[whiteListIndex[_member]];
+        emit MemberRemovedFromWhiteList(_member);
     }
 }
 
@@ -1855,15 +1879,25 @@ contract Library is Ownable, ERC721URIStorage, PrivateSales {
 
     constructor() ERC721("My Library", "Book") {}
 
+    /// @notice A method to mint an ERC721
+    /// @param _recipient Address of the recipient
+    /// @param _id Id of the ERC721 Token
+    /// @param _tokenURI URI of the ERC721 Token
     function _mint(
-        address recipient,
-        uint256 id,
-        string memory tokenURI
+        address _recipient,
+        uint256 _id,
+        string memory _tokenURI
     ) private onlyOwner {
-        _mint(recipient, id);
-        _setTokenURI(id, tokenURI);
+        _mint(_recipient, _id);
+        _setTokenURI(_id, _tokenURI);
     }
 
+    /// @notice A method to create a book
+    /// @param _name The Book Same
+    /// @param _description The Book Description
+    /// @param _author The Book Author
+    /// @param _tokenURI The Token URI
+    /// @param _state The Book State
     function createBook(
         string calldata _name,
         string calldata _description,
@@ -1879,10 +1913,15 @@ contract Library is Ownable, ERC721URIStorage, PrivateSales {
         emit NewBook(id, _description, _name, _author, _tokenURI, _state);
     }
 
+    /// @notice A method to retrieve all books
+    /// @return Books all known Books
     function getBooks() external view returns (Book[] memory) {
         return Books;
     }
 
+    /// @notice A method to retrieve all books by its state
+    /// @param _state A Book state
+    /// @return selectedBooks a list of Book
     function getBooksByState(State _state)
         external
         view
@@ -1898,6 +1937,9 @@ contract Library is Ownable, ERC721URIStorage, PrivateSales {
         return selectedBooks;
     }
 
+    /// @notice A method to retrieve owner's books
+    /// @param _address The owner's address
+    /// @return selectedBooks owner's books
     function getBooksByOwnerId(address _address)
         external
         view
