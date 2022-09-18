@@ -90,7 +90,7 @@
             },
             {
                "indexed": false,
-               "internalType": "enum BookFactory.State",
+               "internalType": "enum Library.State",
                "name": "state",
                "type": "uint8"
             }
@@ -192,7 +192,7 @@
                "type": "string"
             },
             {
-               "internalType": "enum BookFactory.State",
+               "internalType": "enum Library.State",
                "name": "state",
                "type": "uint8"
             }
@@ -203,32 +203,12 @@
       {
          "inputs": [
             {
-               "internalType": "string",
-               "name": "_name",
-               "type": "string"
-            },
-            {
-               "internalType": "string",
-               "name": "_description",
-               "type": "string"
-            },
-            {
-               "internalType": "string",
-               "name": "_author",
-               "type": "string"
-            },
-            {
-               "internalType": "string",
-               "name": "_tokenURI",
-               "type": "string"
-            },
-            {
-               "internalType": "enum BookFactory.State",
-               "name": "_state",
-               "type": "uint8"
+               "internalType": "address",
+               "name": "_member",
+               "type": "address"
             }
          ],
-         "name": "_createBook",
+         "name": "addMemberToWaitingList",
          "outputs": [],
          "stateMutability": "nonpayable",
          "type": "function"
@@ -236,47 +216,14 @@
       {
          "inputs": [
             {
-               "internalType": "enum BookFactory.State",
-               "name": "_state",
-               "type": "uint8"
+               "internalType": "address",
+               "name": "_member",
+               "type": "address"
             }
          ],
-         "name": "_getBooksByState",
-         "outputs": [
-            {
-               "components": [
-                  {
-                     "internalType": "string",
-                     "name": "name",
-                     "type": "string"
-                  },
-                  {
-                     "internalType": "string",
-                     "name": "description",
-                     "type": "string"
-                  },
-                  {
-                     "internalType": "string",
-                     "name": "author",
-                     "type": "string"
-                  },
-                  {
-                     "internalType": "string",
-                     "name": "tokenUri",
-                     "type": "string"
-                  },
-                  {
-                     "internalType": "enum BookFactory.State",
-                     "name": "state",
-                     "type": "uint8"
-                  }
-               ],
-               "internalType": "struct BookFactory.Book[]",
-               "name": "",
-               "type": "tuple[]"
-            }
-         ],
-         "stateMutability": "view",
+         "name": "addMemberToWhiteList",
+         "outputs": [],
+         "stateMutability": "nonpayable",
          "type": "function"
       },
       {
@@ -319,6 +266,39 @@
       {
          "inputs": [
             {
+               "internalType": "string",
+               "name": "_name",
+               "type": "string"
+            },
+            {
+               "internalType": "string",
+               "name": "_description",
+               "type": "string"
+            },
+            {
+               "internalType": "string",
+               "name": "_author",
+               "type": "string"
+            },
+            {
+               "internalType": "string",
+               "name": "_tokenURI",
+               "type": "string"
+            },
+            {
+               "internalType": "enum Library.State",
+               "name": "_state",
+               "type": "uint8"
+            }
+         ],
+         "name": "createBook",
+         "outputs": [],
+         "stateMutability": "nonpayable",
+         "type": "function"
+      },
+      {
+         "inputs": [
+            {
                "internalType": "uint256",
                "name": "tokenId",
                "type": "uint256"
@@ -330,6 +310,183 @@
                "internalType": "address",
                "name": "",
                "type": "address"
+            }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+      },
+      {
+         "inputs": [],
+         "name": "getBooks",
+         "outputs": [
+            {
+               "components": [
+                  {
+                     "internalType": "string",
+                     "name": "name",
+                     "type": "string"
+                  },
+                  {
+                     "internalType": "string",
+                     "name": "description",
+                     "type": "string"
+                  },
+                  {
+                     "internalType": "string",
+                     "name": "author",
+                     "type": "string"
+                  },
+                  {
+                     "internalType": "string",
+                     "name": "tokenUri",
+                     "type": "string"
+                  },
+                  {
+                     "internalType": "enum Library.State",
+                     "name": "state",
+                     "type": "uint8"
+                  }
+               ],
+               "internalType": "struct Library.Book[]",
+               "name": "",
+               "type": "tuple[]"
+            }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+      },
+      {
+         "inputs": [
+            {
+               "internalType": "address",
+               "name": "_address",
+               "type": "address"
+            }
+         ],
+         "name": "getBooksByOwnerId",
+         "outputs": [
+            {
+               "components": [
+                  {
+                     "internalType": "string",
+                     "name": "name",
+                     "type": "string"
+                  },
+                  {
+                     "internalType": "string",
+                     "name": "description",
+                     "type": "string"
+                  },
+                  {
+                     "internalType": "string",
+                     "name": "author",
+                     "type": "string"
+                  },
+                  {
+                     "internalType": "string",
+                     "name": "tokenUri",
+                     "type": "string"
+                  },
+                  {
+                     "internalType": "enum Library.State",
+                     "name": "state",
+                     "type": "uint8"
+                  }
+               ],
+               "internalType": "struct Library.Book[]",
+               "name": "",
+               "type": "tuple[]"
+            }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+      },
+      {
+         "inputs": [
+            {
+               "internalType": "enum Library.State",
+               "name": "_state",
+               "type": "uint8"
+            }
+         ],
+         "name": "getBooksByState",
+         "outputs": [
+            {
+               "components": [
+                  {
+                     "internalType": "string",
+                     "name": "name",
+                     "type": "string"
+                  },
+                  {
+                     "internalType": "string",
+                     "name": "description",
+                     "type": "string"
+                  },
+                  {
+                     "internalType": "string",
+                     "name": "author",
+                     "type": "string"
+                  },
+                  {
+                     "internalType": "string",
+                     "name": "tokenUri",
+                     "type": "string"
+                  },
+                  {
+                     "internalType": "enum Library.State",
+                     "name": "state",
+                     "type": "uint8"
+                  }
+               ],
+               "internalType": "struct Library.Book[]",
+               "name": "",
+               "type": "tuple[]"
+            }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+      },
+      {
+         "inputs": [
+            {
+               "internalType": "address",
+               "name": "_member",
+               "type": "address"
+            }
+         ],
+         "name": "getMemberStatus",
+         "outputs": [
+            {
+               "internalType": "string",
+               "name": "",
+               "type": "string"
+            }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+      },
+      {
+         "inputs": [],
+         "name": "getWaitingList",
+         "outputs": [
+            {
+               "internalType": "address[]",
+               "name": "",
+               "type": "address[]"
+            }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+      },
+      {
+         "inputs": [],
+         "name": "getWhiteList",
+         "outputs": [
+            {
+               "internalType": "address[]",
+               "name": "",
+               "type": "address[]"
             }
          ],
          "stateMutability": "view",
@@ -402,6 +559,32 @@
             }
          ],
          "stateMutability": "view",
+         "type": "function"
+      },
+      {
+         "inputs": [
+            {
+               "internalType": "address",
+               "name": "_member",
+               "type": "address"
+            }
+         ],
+         "name": "removeMemberFromWaitingList",
+         "outputs": [],
+         "stateMutability": "nonpayable",
+         "type": "function"
+      },
+      {
+         "inputs": [
+            {
+               "internalType": "address",
+               "name": "_member",
+               "type": "address"
+            }
+         ],
+         "name": "removeMemberFromWhiteList",
+         "outputs": [],
+         "stateMutability": "nonpayable",
          "type": "function"
       },
       {
@@ -568,5 +751,5 @@
          "type": "function"
       }
    ],
-   "ContractId" : "0xd11b11f712fe6ea390f95c1d7c9ece132b242319"
+   "ContractId": "0xcea20fd52584d1d20d0b581f18ab994fcccd9eec"
 }

@@ -1,11 +1,9 @@
 import '../App.css';
 import { Card } from '../components/Card';
-import { CreateBookForm } from '../components/CreateBookForm';
 import { Web3Button } from '../components/Web3Button';
 import { Navbar } from '../components/Navbar';
 import { useState } from 'react';
 import React from "react";
-import { Link } from "react-router-dom";
 
 const MarketplacePage = () => {
     const [hideAlert, setHideAlert] = useState(true);
