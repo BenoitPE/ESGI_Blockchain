@@ -1875,7 +1875,7 @@ contract BookFactory is Ownable, ERC721URIStorage {
         uint256 id = Books.length - 1;
         BookToOwner[id] = msg.sender;
         ownerBookCount[msg.sender]++;
-        mint(msg.sender, id, _tokenURI);
+        _mint(msg.sender, id, _tokenURI);
         emit NewBook(id, _description, _name, _author, _tokenURI, _state);
     }
 
@@ -1892,6 +1892,21 @@ contract BookFactory is Ownable, ERC721URIStorage {
         uint256 counter = 0;
         for (uint256 i = 0; i < Books.length; i++) {
             if (Books[i].state == _state) {
+                selectedBooks[counter++] = Books[i];
+            }
+        }
+        return selectedBooks;
+    }
+
+    function getBooksByOwnerId(address _address)
+        external
+        view
+        returns (Book[] memory)
+    {
+        Book[] memory selectedBooks = new Book[](Books.length);
+        uint256 counter = 0;
+        for (uint256 i = 0; i < Books.length; i++) {
+            if (BookToOwner[i] == _address) {
                 selectedBooks[counter++] = Books[i];
             }
         }
