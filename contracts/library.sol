@@ -1818,7 +1818,7 @@ contract PrivateSales is Ownable {
     }
 }
 
-contract BookFactory is Ownable, ERC721URIStorage {
+contract Library is Ownable, ERC721URIStorage, PrivateSales {
     enum State {
         NEW,
         VERYGOOD,
