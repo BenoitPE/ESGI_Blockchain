@@ -1,4 +1,13 @@
-export function WaitingList() {
+import React, { useState } from 'react';
+
+export function WaitingList(props) {
+    const { addresses } = props;
+    const rows = useState([]);
+
+    for (let i = 0; i < addresses.length; i++) {
+        rows.push(<tr><td>{addresses[i]}</td><td><button className="btn btn-primary">Accept</button></td></tr>);
+    }
+
     return (
         <>
             <div className="row mt-4 mb-4">
@@ -17,24 +26,7 @@ export function WaitingList() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>0xe48190DC4855E51799C219d7D5E7EFD92d0693A5</td>
-                                <td>
-                                    <button className="btn btn-primary">Accept</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>0x662149265Eb0B5df7b9a54d957734cd5fE2a78e0</td>
-                                <td>
-                                    <button className="btn btn-primary">Accept</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>0x63BdB8E8D539E72A8Dd887F9E4F6D653c14f40cc</td>
-                                <td>
-                                    <button className="btn btn-primary">Accept</button>
-                                </td>
-                            </tr>
+                            {rows}
                         </tbody>
                     </table>
                 </div>

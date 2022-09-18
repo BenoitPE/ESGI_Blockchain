@@ -6,6 +6,8 @@ import { CreateBookForm } from "../components/CreateBookForm";
 
 const AdministrationPage = () => {
 
+    let addresses = ["0xe48190DC4855E51799C219d7D5E7EFD92d0693A5", "0x662149265Eb0B5df7b9a54d957734cd5fE2a78e0"];
+
     return (
         <main>
             <Navbar />
@@ -19,7 +21,7 @@ const AdministrationPage = () => {
 
                 <CreateBookForm />
 
-                <WaitingList />
+                <WaitingList addresses={addresses} />
 
                 <Whitelist />
             </div>
