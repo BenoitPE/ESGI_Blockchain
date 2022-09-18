@@ -1,5 +1,7 @@
 import React from "react";
 import { Navbar } from '../components/Navbar';
+import { Whitelist } from "../components/Whitelist";
+import { WaitingList } from "../components/WaitingList";
 import { CreateBookForm } from "../components/CreateBookForm";
 
 const AdministrationPage = () => {
@@ -17,6 +19,9 @@ const AdministrationPage = () => {
 
                 <CreateBookForm />
 
+                <WaitingList />
+
+                <Whitelist />
             </div>
         </main>
     );

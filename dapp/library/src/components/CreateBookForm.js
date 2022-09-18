@@ -9,19 +9,19 @@ export function CreateBookForm() {
     const [bookTokenUri, setBookTokenUri] = useState("");
 
     const handleSubmit = (event) => {
-      event.preventDefault();
-      mintToken(bookName, bookAuthor, bookState, bookDescription, bookTokenUri).then(tx => {
-         console.log(tx.transactionHash);
-         setBookName("");
-         setBookAuthor("");
-         setBookState("0");
-         setBookDescription("");
-         setBookTokenUri("");
-      }).catch(err => {
-         console.log(err);
-      });
+        event.preventDefault();
+        mintToken(bookName, bookAuthor, bookState, bookDescription, bookTokenUri).then(tx => {
+            console.log(tx.transactionHash);
+            setBookName("");
+            setBookAuthor("");
+            setBookState("0");
+            setBookDescription("");
+            setBookTokenUri("");
+        }).catch(err => {
+            console.log(err);
+        });
 
-   }
+    }
 
     return (
         <div className="card mt-5 mb-5 ">
@@ -48,7 +48,8 @@ export function CreateBookForm() {
                     </div>
 
                     <button className='btn btn-primary' type="submit">Envoyer</button>
-                </form>  </div>
+                </form>
+            </div>
         </div>
     )
 }
