@@ -1771,6 +1771,16 @@ contract PrivateSales is Ownable {
         _;
     }
 
+    function getMemberStatus(address _member)
+        external
+        view
+        returns (string memory)
+    {
+        if (waitingMembers[_member]) return "Member in waiting list";
+        else if (whiteListedMembers[_member]) return "Member in whitelist";
+        else return "Unknow member";
+    }
+
     function getWaitingList() external view returns (address[] memory) {
         return waitingList;
     }
