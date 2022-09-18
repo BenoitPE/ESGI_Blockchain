@@ -1747,20 +1747,18 @@ abstract contract ERC721URIStorage is ERC721 {
 }
 
 contract PrivateSales is Ownable {
-    mapping(address => bool) public waitingMembers;
-    mapping(address => bool) public whiteListedMembers;
+    mapping(address => bool) waitingMembers;
+    mapping(address => bool) whiteListedMembers;
+
+    mapping(address => uint256) waitingListIndex;
+    mapping(address => uint256) whiteListIndex;
+
+    address[] waitingList;
+    address[] whiteList;
 
     modifier isInWaitingList(address _member) {
         require(waitingMembers[_member]);
         _;
-    }
-
-    function AddMemberToWaitingList(address _member) public {
-        waitingMembers[_member] = true;
-    }
-
-    function RemoveMemberFromWaitingList(address _member) public onlyOwner {
-        waitingMembers[_member] = false;
     }
 
     modifier isInWhiteList(address _member) {
@@ -1773,18 +1771,40 @@ contract PrivateSales is Ownable {
         _;
     }
 
-    function AddMemberToWhiteList(address _member)
+    function getWaitingList() external view returns (address[] memory) {
+        return waitingList;
+    }
+
+    function getWhiteList() external view returns (address[] memory) {
+        return whiteList;
+    }
+
+    function addMemberToWaitingList(address _member) public {
+        waitingMembers[_member] = true;
+        waitingList.push(_member);
+        waitingListIndex[_member] = waitingList.length - 1;
+    }
+
+    function removeMemberFromWaitingList(address _member) public onlyOwner {
+        waitingMembers[_member] = false;
+        delete waitingList[waitingListIndex[_member]];
+    }
+
+    function addMemberToWhiteList(address _member)
         public
         onlyOwner
         isInWaitingList(_member)
         isNotInWhiteList(_member)
     {
-        waitingMembers[_member] = false;
+        removeMemberFromWaitingList(_member);
         whiteListedMembers[_member] = true;
+        whiteList.push(_member);
+        whiteListIndex[_member] = whiteList.length - 1;
     }
 
-    function RemoveMemberFromWhiteList(address _member) public onlyOwner {
+    function removeMemberFromWhiteList(address _member) public onlyOwner {
         whiteListedMembers[_member] = false;
+        delete whiteList[whiteListIndex[_member]];
     }
 }
 
