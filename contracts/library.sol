@@ -1954,4 +1954,14 @@ contract Library is Ownable, ERC721URIStorage, PrivateSales {
         }
         return selectedBooks;
     }
+
+    function buyBook(uint256 tokenId) public payable isInWhiteList(msg.sender){
+        approve(msg.sender,tokenId);
+        transferFrom(owner(), msg.sender, tokenId);
+        approve(0x0000000000000000000000000000000000000000,tokenId);
+    }
+
+    function retrieveMoney(uint256 value) public onlyOwner {
+        payable(msg.sender).transfer(value);
+    }
 }
