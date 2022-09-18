@@ -1759,7 +1759,7 @@ contract PrivateSales is Ownable {
         waitingMembers[_member] = true;
     }
 
-    function RemoveMemberFromWaitingList(address _member) public onlyOwner{
+    function RemoveMemberFromWaitingList(address _member) public onlyOwner {
         waitingMembers[_member] = false;
     }
 
@@ -1773,7 +1773,12 @@ contract PrivateSales is Ownable {
         _;
     }
 
-    function AddMemberToWhiteList(address _member) public onlyOwner isInWaitingList(_member) isNotInWhiteList(_member) {
+    function AddMemberToWhiteList(address _member)
+        public
+        onlyOwner
+        isInWaitingList(_member)
+        isNotInWhiteList(_member)
+    {
         waitingMembers[_member] = false;
         whiteListedMembers[_member] = true;
     }
@@ -1844,6 +1849,10 @@ contract BookFactory is Ownable, ERC721URIStorage {
         emit NewBook(id, _description, _name, _author, _tokenURI, _state);
     }
 
+    function getBooks() external view returns (Book[] memory) {
+        return Books;
+    }
+
     function getBooksByState(State _state)
         external
         view
@@ -1859,4 +1868,3 @@ contract BookFactory is Ownable, ERC721URIStorage {
         return selectedBooks;
     }
 }
-
