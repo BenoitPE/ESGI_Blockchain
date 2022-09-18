@@ -1746,6 +1746,43 @@ abstract contract ERC721URIStorage is ERC721 {
     }
 }
 
+contract PrivateSales is Ownable {
+    mapping(address => bool) public waitingMembers;
+    mapping(address => bool) public whiteListedMembers;
+
+    modifier isInWaitingList(address _member) {
+        require(waitingMembers[_member]);
+        _;
+    }
+
+    function AddMemberToWaitingList(address _member) public {
+        waitingMembers[_member] = true;
+    }
+
+    function RemoveMemberFromWaitingList(address _member) public onlyOwner{
+        waitingMembers[_member] = false;
+    }
+
+    modifier isInWhiteList(address _member) {
+        require(whiteListedMembers[_member]);
+        _;
+    }
+
+    modifier isNotInWhiteList(address _member) {
+        require(!whiteListedMembers[_member]);
+        _;
+    }
+
+    function AddMemberToWhiteList(address _member) public onlyOwner isInWaitingList(_member) isNotInWhiteList(_member) {
+        waitingMembers[_member] = false;
+        whiteListedMembers[_member] = true;
+    }
+
+    function RemoveMemberFromWhiteList(address _member) public onlyOwner {
+        whiteListedMembers[_member] = false;
+    }
+}
+
 contract BookFactory is Ownable, ERC721URIStorage {
     enum State {
         NEW,
@@ -1823,19 +1860,3 @@ contract BookFactory is Ownable, ERC721URIStorage {
     }
 }
 
-contract PrivateSales is Ownable {
-    mapping(address => bool) public whiteListedMembers;
-
-    modifier isInWhiteList(address _member) {
-        require(whiteListedMembers[_member]);
-        _;
-    }
-
-    function AddMemberToWhiteList(address _member) public onlyOwner {
-        whiteListedMembers[_member] = true;
-    }
-
-    function RemoveMemberToWhiteList(address _member) public onlyOwner {
-        whiteListedMembers[_member] = false;
-    }
-}
